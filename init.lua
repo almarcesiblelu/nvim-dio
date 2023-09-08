@@ -1,3 +1,4 @@
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not vim.loop.fs_stat(lazypath) then
@@ -16,5 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = require "plugins"
 
 require("lazy").setup(plugins, {})
+
+require("mappings")
 
 vim.cmd.colorscheme 'catppuccin'
