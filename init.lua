@@ -22,4 +22,4 @@ require("lazy").setup(plugins, {})
 require("mappings")
 require("settings")
 
-vim.cmd.colorscheme 'catppuccin'
+-- vim.cmd.colorscheme 'catppuccin'
