@@ -1,20 +1,20 @@
 return {
-	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-	{
-  "nvim-tree/nvim-tree.lua",
-  version = "*",
-  dependencies = {
-    "nvim-tree/nvim-web-devicons",
-  },
-  opts = function()
-    require("nvim-tree").setup(
-	require("plugins.configs.nvim-tree")
-    )
-  end,
-      config = function(_, opts)
+  { "catppuccin/nvim",      name = "catppuccin", priority = 1000 },
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    opts = function()
+      require("nvim-tree").setup(
+        require("plugins.configs.nvim-tree")
+      )
+    end,
+    config = function(_, opts)
       require("nvim-tree").setup(opts)
     end
-},
+  },
   {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
@@ -40,7 +40,7 @@ return {
   'tpope/vim-rhubarb',
 
   'tpope/vim-sleuth',
-    {
+  {
     'lewis6991/gitsigns.nvim',
     opts = {
       signs = {
@@ -54,31 +54,31 @@ return {
         vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
 
         local gs = package.loaded.gitsigns
-        vim.keymap.set({'n', 'v'}, ']c', function()
+        vim.keymap.set({ 'n', 'v' }, ']c', function()
           if vim.wo.diff then return ']c' end
           vim.schedule(function() gs.next_hunk() end)
           return '<Ignore>'
-        end, {expr=true, buffer = bufnr, desc = "Jump to next hunk"})
-        vim.keymap.set({'n', 'v'}, '[c', function()
+        end, { expr = true, buffer = bufnr, desc = "Jump to next hunk" })
+        vim.keymap.set({ 'n', 'v' }, '[c', function()
           if vim.wo.diff then return '[c' end
           vim.schedule(function() gs.prev_hunk() end)
           return '<Ignore>'
-        end, {expr=true, buffer = bufnr, desc = "Jump to previous hunk"})
+        end, { expr = true, buffer = bufnr, desc = "Jump to previous hunk" })
       end,
     },
   },
-    {
+  {
     'neovim/nvim-lspconfig',
     dependencies = {
       { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
 
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
 
       'folke/neodev.nvim',
     },
   },
-    {
+  {
     'hrsh7th/nvim-cmp',
     dependencies = {
       'L3MON4D3/LuaSnip',
@@ -89,8 +89,8 @@ return {
       'rafamadriz/friendly-snippets',
     },
   },
-    { 'folke/which-key.nvim', opts = {} },
-    {
+  { 'folke/which-key.nvim', opts = {} },
+  {
     'nvim-lualine/lualine.nvim',
     opts = {
       options = {
@@ -101,21 +101,21 @@ return {
       },
     },
   },
-    {
+  {
     'lukas-reineke/indent-blankline.nvim',
     opts = {
       show_trailing_blankline_indent = false,
     },
   },
   {
-        "numToStr/Comment.nvim",
+    "numToStr/Comment.nvim",
     keys = {
-      { "gcc", mode = "n", desc = "Comment toggle current line" },
-      { "gc", mode = { "n", "o" }, desc = "Comment toggle linewise" },
-      { "gc", mode = "x", desc = "Comment toggle linewise (visual)" },
-      { "gbc", mode = "n", desc = "Comment toggle current block" },
-      { "gb", mode = { "n", "o" }, desc = "Comment toggle blockwise" },
-      { "gb", mode = "x", desc = "Comment toggle blockwise (visual)" },
+      { "gcc", mode = "n",          desc = "Comment toggle current line" },
+      { "gc",  mode = { "n", "o" }, desc = "Comment toggle linewise" },
+      { "gc",  mode = "x",          desc = "Comment toggle linewise (visual)" },
+      { "gbc", mode = "n",          desc = "Comment toggle current block" },
+      { "gb",  mode = { "n", "o" }, desc = "Comment toggle blockwise" },
+      { "gb",  mode = "x",          desc = "Comment toggle blockwise (visual)" },
     },
     -- init = function()
     --   vim.keymap.set("n", "<C-/>", require("Comment.api").toggle.linewise.current(), {desc="toggle comment"})

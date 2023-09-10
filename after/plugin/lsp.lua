@@ -33,12 +33,12 @@ local on_attach = function(_, bufnr)
 end
 
 local servers = {
-   clangd = {},
-   gopls = {},
-   pyright = {},
-   rust_analyzer = {},
-   tsserver = {},
-   html = { filetypes = { 'html', 'twig', 'hbs'} },
+  clangd = {},
+  gopls = {},
+  pyright = {},
+  rust_analyzer = {},
+  tsserver = {},
+  html = { filetypes = { 'html', 'twig', 'hbs' } },
 
   lua_ls = {
     Lua = {
