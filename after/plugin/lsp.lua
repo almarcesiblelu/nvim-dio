@@ -30,6 +30,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
+
   if client.supports_method("textDocument/formatting") then
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
     vim.api.nvim_clear_autocmds({
@@ -48,11 +49,16 @@ end
 
 local servers = {
   clangd = {},
-  gopls = {},
+  -- gopls = {},
   pyright = {},
   rust_analyzer = {},
   tsserver = {},
   html = { filetypes = { 'html', 'twig', 'hbs' } },
+  eslint = {
+    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx",
+      "vue",
+      "svelte", "astro" }
+  },
 
   lua_ls = {
     Lua = {
@@ -131,3 +137,32 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+local function organize_imports()
+  local params = {
+    command = "_typescript.organizeImports",
+    arguments = { vim.api.nvim_buf_get_name(0) },
+    title = ""
+  }
+  vim.lsp.buf.execute_command(params)
+end
+require('lspconfig').tsserver.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  commands = {
+    OrganizeImports = {
+      organize_imports,
+      description = "Organize Imports"
+    }
+  }
+}
+require('lspconfig').eslint.setup({
+  capabilities = capabilities,
+  on_attach = function(client, bufnr)
+    print('lspconfig')
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
+})
