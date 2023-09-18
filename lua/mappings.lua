@@ -30,6 +30,14 @@ vim.keymap.set("i", "<C-h>", "<Left>")
 vim.keymap.set("i", "<C-j>", "<Down>")
 vim.keymap.set("i", "<C-k>", "<Up>")
 vim.keymap.set("i", "<C-l>", "<Right>")
-vim.keymap.set('n', '<Tab>', '<Cmd>BufferPrevious<CR>')
-vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferNext<CR>')
+vim.keymap.set('n', '<Tab>', '<Cmd>BufferNext<CR>')
+vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferPrevious<CR>')
 vim.keymap.set('n', '<C-x>', '<Cmd>BufferClose<CR>')
+
+
+vim.keymap.set("n", "<leader>q", "<cmd>q<CR>")
+vim.keymap.set("n", "<leader>Q", "<cmd>q!<CR>")
+
+--toggle terminal and activate insert mode
+vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<CR>i")
+-- use control-x to exit terminal mode
