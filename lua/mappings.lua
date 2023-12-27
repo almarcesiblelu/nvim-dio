@@ -1,43 +1,51 @@
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+local map = vim.keymap
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+map.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+map.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
-vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+map.set("v", "J", ":m '>+1<CR>gv=gv")
+map.set("v", "K", ":m '<-2<CR>gv=gv")
 
-vim.keymap.set("x", "<leader>p", [["_dP]])
+map.set("n", "J", "mzJ`z")
+map.set("n", "<C-d>", "<C-d>zz")
+map.set("n", "<C-u>", "<C-u>zz")
+map.set("n", "n", "nzzzv")
+map.set("n", "N", "Nzzzv")
 
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+map.set("x", "<leader>p", [["_dP]])
 
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+map.set({ "n", "v" }, "<leader>y", [["+y]])
+map.set("n", "<leader>Y", [["+Y]])
 
-vim.keymap.set("n", "<C-h>", "<C-w>h")
-vim.keymap.set("n", "<C-j>", "<C-w>j")
-vim.keymap.set("n", "<C-k>", "<C-w>k")
-vim.keymap.set("n", "<C-l>", "<C-w>l")
+map.set({ "n", "v" }, "<leader>d", [["_d]])
 
-vim.keymap.set("n", "<C-s>", "<cmd> w <CR>")
-
-vim.keymap.set("i", "<C-a>", "<ESC>^i")
-vim.keymap.set("i", "<C-e>", "<End>")
-vim.keymap.set("i", "<C-h>", "<Left>")
-vim.keymap.set("i", "<C-j>", "<Down>")
-vim.keymap.set("i", "<C-k>", "<Up>")
-vim.keymap.set("i", "<C-l>", "<Right>")
-vim.keymap.set('n', '<Tab>', '<Cmd>BufferNext<CR>')
-vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferPrevious<CR>')
-vim.keymap.set('n', '<C-x>', '<Cmd>BufferClose<CR>')
+map.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
+map.set("n", "<C-j>", "<C-w>j", { desc = "Move to down window" })
+map.set("n", "<C-k>", "<C-w>k", { desc = "Move to up window" })
+map.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
 
 
-vim.keymap.set("n", "<leader>q", "<cmd>q<CR>")
-vim.keymap.set("n", "<leader>Q", "<cmd>q!<CR>")
+map.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+map.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+map.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+map.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
---toggle terminal and activate insert mode
-vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<CR>i")
+map.set({ "n", "i" }, "<C-s>", "<cmd> w <CR><ESC>", { desc = "Save file" })
+
+map.set("i", "<C-a>", "<ESC>^i")
+map.set("i", "<C-e>", "<End>")
+map.set("i", "<C-h>", "<Left>")
+map.set("i", "<C-j>", "<Down>")
+map.set("i", "<C-k>", "<Up>")
+map.set("i", "<C-l>", "<Right>")
+map.set('n', '<Tab>', '<Cmd>BufferNext<CR>')
+map.set('n', '<S-Tab>', '<Cmd>BufferPrevious<CR>')
+map.set('n', '<C-x>', '<Cmd>BufferClose<CR>')
+
+
+map.set("n", "<leader>q", "<cmd>q<CR>")
+map.set("n", "<leader>Q", "<cmd>q!<CR>")
+
+-- togleterm
+map.set({ "n", "t" }, "<C-t>", "<cmd>ToggleTerm<CR>")
 -- use control-x to exit terminal mode
